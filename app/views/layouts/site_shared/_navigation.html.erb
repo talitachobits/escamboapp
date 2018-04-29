@@ -1,0 +1,31 @@
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <%= link_to t('app.name'), root_path, class:"navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <% unless member_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Login", new_member_session_path, class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Cadastre-se", new_member_registration_path, class:"nav-link"%>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to current_member.email, "", class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Perfil", site_profile_dashboard_index_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_member_session_path, class:"nav-link", method: :delete%>
+            </li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </nav>

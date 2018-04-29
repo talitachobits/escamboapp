@@ -1,0 +1,30 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<h2>Listando Anúncios</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+     <th>#</th>
+     <th>Imagem</th>
+      <th>Título</th>
+      <th>Categoria</th>
+       <th>Preço</th>
+       <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <th scope="row"><%= ad.id %></th>
+        <td><%= image_tag ad.picture(:thumb) %></td>
+        <td><%= ad.title %></td>
+        <td><%= ad.category.description %></td>
+        <td><%= humanized_money_with_symbol ad.price %></td>
+        <td>
+          <%= link_to edit_site_profile_ad_path(ad), class:"btn btn-primary btn-sm" do %>
+            <i class="fa fa-pencil" ></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+   </tbody>
+</table>
